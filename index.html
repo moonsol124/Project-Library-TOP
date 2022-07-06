@@ -1,0 +1,313 @@
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+        font-family: 'ComiliBook', Arial, Helvetica, sans-serif;
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr 6fr 1fr;
+        overflow: auto;
+    }
+
+    .nav,
+    .main,
+    .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: white;
+        font-size: 2.5rem;
+    }
+
+    .main {
+        background-color: white;
+        color: black;
+        font-size: 1rem;
+        padding: 3.5rem;
+    }
+
+    .main>.content {
+        width: 100%;
+        height: 100%;
+        border: solid 1px black;
+        border-radius: 10px;
+        position: relative;
+        display: grid;
+        margin: -2rem;
+        padding: 2rem;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        background-color: RGB(240, 240, 240);
+    }
+
+    .form-container {
+        padding: 1rem;
+        position: absolute;
+        top: .1rem;
+        left: .1rem;
+        z-index: 1;
+    }
+
+    .button-1,
+    .button-2 {
+        padding: .2rem .5rem;
+        font-size: 1.5rem;
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+
+    .button-2 {
+        font-size: 1rem;
+    }
+
+    .button-1:hover,
+    .button-2:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .button-1:active,
+    .button-2:active {
+        background-color: black;
+        color: white;
+        transform: translate(0px, .2rem);
+    }
+
+    form {
+        border: solid 1px black;
+        position: absolute;
+        padding: 1rem;
+        display: grid;
+        gap: .5rem;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        font-size: 1.3rem;
+    }
+
+    .form-hidden {
+        visibility: hidden;
+    }
+
+    .form-visible {
+        visibility: visible;
+    }
+
+    .book {
+        border: 1px solid black;
+        padding: 1rem;
+        display: grid;
+        grid-template-rows: repeat(auto, 1fr);
+        border-radius: 10px;
+        align-items: center;
+        background-color: gray;
+        gap: 1rem;
+    }
+
+    .book-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        border-radius: 10px;
+        padding: 0.5rem;
+        background-color: white;
+    }
+
+    h1, h2 {
+        font-size: 1rem;
+        text-overflow: ellipsis;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h2 {
+        text-align: start;
+    }
+
+    .long {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .delete-btn {
+        top: 1rem;
+        left: 1rem;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/comili" type="text/css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav">My Home Library</div>
+    <div class="main">
+        <div class="content">
+            <div class="form-container">
+                <button id="new-book" class="button-1">New Book</button>
+                <form action="#" method="post" class='form-hidden'>
+                    <div>
+                        <label for="author">Author:</label>
+                        <input type="text" name="Author" id="author">
+                    </div>
+                    <div>
+                        <label for="title">Title:</label>
+                        <input type="text" name="Title" id="title">
+                    </div>
+                    <div>
+                        <label for="pages">Number of pages:</label>
+                        <input type="number" name="Pages" id="pages">
+                    </div>
+                    <div>
+                        <label for="status">Have I read the book?: </label>
+                        <input type="text" name="Status" id="status">
+                    </div>
+                    <button class="button-2" type="button" id="form-button">Add a new book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+<script>
+    //1. store the book objects in a simply array.
+    const books = [];
+    //2. add a function that takes the user's input. this function adds the object
+    // in the array
+    //3. write a function that loops through the array
+    //and displays each book on the page in a card.
+    // //4. add a 'new book' button so user can add a new book.
+    const newBook = document.getElementById('new-book');
+    const form = document.querySelector('form');
+    const body = document.querySelector('body');
+    const formButton = document.getElementById('form-button');
+    const content = document.querySelector('.content');
+
+    newBook.addEventListener('click', e => {
+        toggleForm();
+    })
+
+    function toggleForm() {
+        if (form.classList.value === 'form-hidden') {
+            form.className = 'form-visible';
+        }
+        else {
+            form.className = 'form-hidden';
+        }
+    }
+
+    // content.addEventListener('click', e => {
+    //     if (!e.target.textContent.includes('Delete')) {
+    //         return;
+    //     }
+    //     const btnDataKey = e.target.getAttribute('data-key');
+    //     content.removeChild(document.getElementById(btnDataKey));
+    // });
+
+    formButton.addEventListener('click', e => {
+        const obj = {};
+        const inputs = Array.from(document.querySelectorAll('input'));
+        inputs.forEach(input => {
+            obj[input.name] = input.value;
+        })
+        books.push(obj);
+        inputs.forEach(input => {
+            input.value = '';
+        })
+        toggleForm();
+        createBooks();
+        // const deleteBtns = Array.from(document.querySelectorAll('#delete-btn'));
+        // deleteBtns.forEach(btn => {
+        //     btn.addEventListener('click', e => {
+        //         const btnDataKey = parseInt(btn.getAttribute('data-key'));
+        //         content.removeChild(document.getElementById(btnDataKey));
+        //     })
+    })
+
+    function createBooks() {
+        const bookDiv = document.createElement('div');
+        bookDiv.className = 'book';
+        const bookObj = books.length-1;
+        for (const key in books[bookObj]) {
+            const bookGrid = document.createElement('div');
+            bookGrid.className = 'book-grid';
+            const h3 = document.createElement('h1');
+            h3.textContent = `${key}:`;
+            const p = document.createElement('h2');
+            p.textContent = books[bookObj][key];
+            h3.className = 'long';
+            p.className = 'long';
+            bookGrid.append(h3, p);
+            bookDiv.appendChild(bookGrid);
+            const btn = document.createElement('button');
+            btn.style.top = '0.3rem';
+            btn.style.right = '.5rem';  
+            btn.style.position= 'absolute';
+            btn.textContent = 'Delete';
+            btn.className = 'button-1';
+            btn.style.fontSize = '1rem';
+            // multiple ids with the same content is
+            btn.setAttribute('id', 'delete-btn');
+            btn.setAttribute('data-key', `${bookObj}`);
+            btn.addEventListener('click', e => {
+                const btnDataKey = parseInt(btn.getAttribute('data-key'));
+                const bookDeleted = document.getElementById(btnDataKey);
+                content.removeChild(bookDeleted);
+            })
+            // const number = btn.getAttribute('data-key');
+            // console.log(number);
+            bookDiv.appendChild(btn);
+        }
+        bookDiv.setAttribute('id', `${bookObj}`);
+        bookDiv.style.position='relative';
+        content.appendChild(bookDiv);
+    }
+
+    // 1. set a data attribute for both
+    // 2. when delete is clicked, loop through the cards to search for the right one
+    // 3. deleted it from the array
+
+    // const object = {
+    //      celular: 1,
+    //      device: 2,
+    //      fuck: 3,
+    // }
+
+    // for (const key in object) {
+    //     const value = object[key];
+    //     console.log (value);
+        // console.log (`${key}: ${object[key]}`);
+    // }
+
+    // const obj = {
+    //     property1: 'propert1',
+    // }
+    // obj['propert2'] = 'property2';
+    // console.log (obj);
+
+    //5. inputs of the book: 'author', 'title', 'number of pages', 'have i read it ?'
+    //6. add a button on each book's card to remove the book
+    //7. add a button on the book to change its read statue (with toggle)
+
+    // <summary>
+    // html/css: make cards in a list
+    // three buttons:
+    // 'new book' takes inputs such as 'author', 'title', 'number of pages', 'read status'
+    // 'remove' on the display of each book to remove the book.
+    // 'read status' a toggle button to change the read status
+</script>
+
+</html>
