@@ -217,16 +217,35 @@
     //     content.removeChild(document.getElementById(btnDataKey));
     // });
 
+    class Book {
+        constructor(author, title, pages, status) {
+            this.author = author;
+            this.title = title;
+            this.pages = pages;
+            this.status = status;
+        }
+    }
+
+    const book1 = new Book('maria', 'ocean behind', '123', 'no');
+
     formButton.addEventListener('click', e => {
-        const obj = {};
+        const author = document.getElementById('author');
+        const title = document.getElementById('title');
+        const pages = document.getElementById('pages');
+        const status = document.getElementById('status');
+
+        const book = new Book(author.value, title.value, pages.value, status.value);
+        books.push(book);
+        // const obj = {};
         const inputs = Array.from(document.querySelectorAll('input'));
-        inputs.forEach(input => {
-            obj[input.name] = input.value;
-        })
-        books.push(obj);
+        // inputs.forEach(input => {
+        //     obj[input.name] = input.value;
+        // })
+
         inputs.forEach(input => {
             input.value = '';
         })
+
         toggleForm();
         createBooks();
         // const deleteBtns = Array.from(document.querySelectorAll('#delete-btn'));
@@ -265,6 +284,9 @@
             btn.addEventListener('click', e => {
                 const btnDataKey = parseInt(btn.getAttribute('data-key'));
                 const bookDeleted = document.getElementById(btnDataKey);
+                console.log (bookDeleted.id);
+                books.splice(parseInt(bookDeleted.id), 1);
+                console.log (books);
                 content.removeChild(bookDeleted);
             })
             // const number = btn.getAttribute('data-key');
