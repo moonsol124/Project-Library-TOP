@@ -1,188 +1,208 @@
 <style>
-    * {
-        padding: 0px;
-        margin: 0px;
-        font-family: 'ComiliBook', Arial, Helvetica, sans-serif;
-        font-weight: normal;
-        font-style: normal;
-    }
+  * {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Times New Roman', Times, serif;
+    /* font-family: "ComiliBook" Arial, Helvetica, sans-serif; */
+    font-weight: normal;
+    font-style: normal;
+  }
 
-    body {
-        min-height: 100vh;
-        display: grid;
-        grid-template-rows: 1fr 6fr 1fr;
-        overflow: auto;
-    }
+  body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    overflow: auto;
+  }
 
-    .nav,
-    .main,
-    .footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
-        color: white;
-        font-size: 2.5rem;
-    }
+  .nav,
+  .main,
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 2.5rem;
+  }
 
-    .main {
-        background-color: white;
-        color: black;
-        font-size: 1rem;
-        padding: 3.5rem;
-    }
+  .main {
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    padding: 3.5rem;
+  }
 
-    .main>.content {
-        width: 100%;
-        height: 100%;
-        border: solid 1px black;
-        border-radius: 10px;
-        position: relative;
-        display: grid;
-        margin: -2rem;
-        padding: 2rem;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        background-color: RGB(240, 240, 240);
-    }
+  .main > .content {
+    width: 100%;
+    height: 100%;
+    border: solid 1px black;
+    border-radius: 10px;
+    position: relative;
+    display: grid;
+    margin: -2rem;
+    padding: 2rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    background-color: RGB(240, 240, 240);
+  }
 
-    .form-container {
-        padding: 1rem;
-        position: absolute;
-        top: .1rem;
-        left: .1rem;
-        z-index: 1;
-    }
+  .form-container {
+    padding: 1rem;
+    position: absolute;
+    top: 0.1rem;
+    left: 0.1rem;
+    z-index: 1;
+  }
 
-    .button-1,
-    .button-2 {
-        padding: .2rem .5rem;
-        font-size: 1.5rem;
-        background-color: white;
-        color: black;
-        border: 1px solid black;
-        border-radius: 10px;
-    }
+  .button-1,
+  .button-2 {
+    padding: 0.2rem 0.5rem;
+    font-size: 1.5rem;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
 
-    .button-2 {
-        font-size: 1rem;
-    }
+  .button-2 {
+    font-size: 1rem;
+  }
 
-    .button-1:hover,
-    .button-2:hover {
-        background-color: black;
-        color: white;
-    }
+  .button-1:hover,
+  .button-2:hover {
+    background-color: black;
+    color: white;
+  }
 
-    .button-1:active,
-    .button-2:active {
-        background-color: black;
-        color: white;
-        transform: translate(0px, .2rem);
-    }
+  .button-1:active,
+  .button-2:active {
+    background-color: black;
+    color: white;
+    transform: translate(0px, 0.2rem);
+  }
 
-    form {
-        border: solid 1px black;
-        position: absolute;
-        padding: 1rem;
-        display: grid;
-        gap: .5rem;
-        border-radius: 10px;
-        background-color: black;
-        color: white;
-        font-size: 1.3rem;
-    }
+  form {
+    border: solid 1px black;
+    position: absolute;
+    padding: 1rem;
+    display: grid;
+    gap: 0.5rem;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-size: 1.3rem;
+  }
 
-    .form-hidden {
-        visibility: hidden;
-    }
+  .form-hidden {
+    visibility: hidden;
+  }
 
-    .form-visible {
-        visibility: visible;
-    }
+  .form-visible {
+    visibility: visible;
+  }
 
-    .book {
-        border: 1px solid black;
-        padding: 1rem;
-        display: grid;
-        grid-template-rows: repeat(auto, 1fr);
-        border-radius: 10px;
-        align-items: center;
-        background-color: gray;
-        gap: 1rem;
-    }
+  .book {
+    border: 1px solid black;
+    padding: 1rem;
+    display: grid;
+    grid-template-rows: repeat(auto, 1fr);
+    border-radius: 10px;
+    align-items: center;
+    background-color: gray;
+    gap: 1rem;
+  }
 
-    .book-grid {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        border-radius: 10px;
-        padding: 0.5rem;
-        background-color: white;
-    }
+  .book-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: white;
+  }
 
-    h1, h2 {
-        font-size: 1rem;
-        text-overflow: ellipsis;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+  h1,
+  h2 {
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-    h2 {
-        text-align: start;
-    }
+  h2 {
+    text-align: start;
+  }
 
-    .long {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
+  .long {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-    .delete-btn {
-        top: 1rem;
-        left: 1rem;
-    }
+  .delete-btn {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .error-msg {
+    background-color: red;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 1px 5px;
+  }
+
 </style>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/comili" type="text/css" />
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="https://fontlibrary.org//face/comili"
+      type="text/css"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="nav">My Home Library</div>
     <div class="main">
-        <div class="content">
-            <div class="form-container">
-                <button id="new-book" class="button-1">New Book</button>
-                <form action="#" method="post" class='form-hidden'>
-                    <div>
-                        <label for="author">Author:</label>
-                        <input type="text" name="Author" id="author">
-                    </div>
-                    <div>
-                        <label for="title">Title:</label>
-                        <input type="text" name="Title" id="title">
-                    </div>
-                    <div>
-                        <label for="pages">Number of pages:</label>
-                        <input type="number" name="Pages" id="pages">
-                    </div>
-                    <div>
-                        <label for="status">Have I read the book?: </label>
-                        <input type="text" name="Status" id="status">
-                    </div>
-                    <button class="button-2" type="button" id="form-button">Add a new book</button>
-                </form>
+      <div class="content">
+        <div class="form-container">
+          <button id="new-book" class="button-1">New Book</button>
+          <form action="#" method="post" class="form-hidden">
+            <div>
+              <label for="author">Author:</label>
+              <input type="text" name="Author" id="author" required/>
+              <span></span>
             </div>
+            <div>
+              <label for="title">Title:</label>
+              <input type="text" name="Title" id="title" required/>
+              <span></span>
+            </div>
+            <div>
+              <label for="pages">Number of pages:</label>
+              <input type="number" name="Pages" id="pages" required/>
+              <span></span>
+            </div>
+            <div>
+              <label for="status">Have I read the book?: </label>
+              <input type="text" name="Status" id="status" required/>
+              <span></span>
+            </div>
+            <button class="button-2" type="button" id="form-button">
+              Add a new book
+            </button>
+          </form>
         </div>
+      </div>
     </div>
     <div class="footer">footer</div>
-</body>
-<script>
+  </body>
+  <script>
     //1. store the book objects in a simply array.
     const books = [];
     //2. add a function that takes the user's input. this function adds the object
@@ -190,23 +210,22 @@
     //3. write a function that loops through the array
     //and displays each book on the page in a card.
     // //4. add a 'new book' button so user can add a new book.
-    const newBook = document.getElementById('new-book');
-    const form = document.querySelector('form');
-    const body = document.querySelector('body');
-    const formButton = document.getElementById('form-button');
-    const content = document.querySelector('.content');
+    const newBook = document.getElementById("new-book");
+    const form = document.querySelector("form");
+    const body = document.querySelector("body");
+    const formButton = document.getElementById("form-button");
+    const content = document.querySelector(".content");
 
-    newBook.addEventListener('click', e => {
-        toggleForm();
-    })
+    newBook.addEventListener("click", (e) => {
+      toggleForm();
+    });
 
     function toggleForm() {
-        if (form.classList.value === 'form-hidden') {
-            form.className = 'form-visible';
-        }
-        else {
-            form.className = 'form-hidden';
-        }
+      if (form.classList.value === "form-hidden") {
+        form.className = "form-visible";
+      } else {
+        form.className = "form-hidden";
+      }
     }
 
     // content.addEventListener('click', e => {
@@ -218,84 +237,122 @@
     // });
 
     class Book {
-        constructor(author, title, pages, status) {
-            this.author = author;
-            this.title = title;
-            this.pages = pages;
-            this.status = status;
+      constructor(author, title, pages, status) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.status = status;
+      }
+    }
+
+    const book1 = new Book("maria", "ocean behind", "123", "no");
+
+    function checkError(input) {
+      const span = document.querySelector(`#${input.id}+span`);
+        if (input.validity.valueMissing) {
+          span.className = 'error-msg';
+          span.textContent = "This field is required.";
+        }
+        else {
+          span.className = '';
+          span.textContent = '';
         }
     }
 
-    const book1 = new Book('maria', 'ocean behind', '123', 'no');
+    function clearInputs(inputs) {
+      inputs.forEach(input => {
+        input.value = '';
+      })
+    }
 
-    formButton.addEventListener('click', e => {
-        const author = document.getElementById('author');
-        const title = document.getElementById('title');
-        const pages = document.getElementById('pages');
-        const status = document.getElementById('status');
+    formButton.addEventListener("click", (e) => {
+      const author = document.getElementById("author");
+      const title = document.getElementById("title");
+      const pages = document.getElementById("pages");
+      const status = document.getElementById("status");
 
-        const book = new Book(author.value, title.value, pages.value, status.value);
-        books.push(book);
-        // const obj = {};
-        const inputs = Array.from(document.querySelectorAll('input'));
-        // inputs.forEach(input => {
-        //     obj[input.name] = input.value;
-        // })
+      const book = new Book(
+        author.value,
+        title.value,
+        pages.value,
+        status.value
+      );
+      books.push(book);
+      // const obj = {};
+      const inputs = Array.from(document.querySelectorAll("input"));
+      // inputs.forEach(input => {
+      //   console.log (input);
+      // })
 
-        inputs.forEach(input => {
-            input.value = '';
-        })
+      // const errs = Array.from(document.querySelectorAll('input+span'));
 
+      inputs.forEach(input => {
+        checkError(input);
+      });
+
+      const inputAllValid = inputs.every(input => {
+        if (input.validity.valid) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      });
+
+      if (inputAllValid === true) {
         toggleForm();
         createBooks();
-        // const deleteBtns = Array.from(document.querySelectorAll('#delete-btn'));
-        // deleteBtns.forEach(btn => {
-        //     btn.addEventListener('click', e => {
-        //         const btnDataKey = parseInt(btn.getAttribute('data-key'));
-        //         content.removeChild(document.getElementById(btnDataKey));
-        //     })
-    })
+        clearInputs(inputs);
+      }
+
+      // const deleteBtns = Array.from(document.querySelectorAll('#delete-btn'));
+      // deleteBtns.forEach(btn => {
+      //     btn.addEventListener('click', e => {
+      //         const btnDataKey = parseInt(btn.getAttribute('data-key'));
+      //         content.removeChild(document.getElementById(btnDataKey));
+      //     })
+    });
 
     function createBooks() {
-        const bookDiv = document.createElement('div');
-        bookDiv.className = 'book';
-        const bookObj = books.length-1;
-        for (const key in books[bookObj]) {
-            const bookGrid = document.createElement('div');
-            bookGrid.className = 'book-grid';
-            const h3 = document.createElement('h1');
-            h3.textContent = `${key}:`;
-            const p = document.createElement('h2');
-            p.textContent = books[bookObj][key];
-            h3.className = 'long';
-            p.className = 'long';
-            bookGrid.append(h3, p);
-            bookDiv.appendChild(bookGrid);
-            const btn = document.createElement('button');
-            btn.style.top = '0.3rem';
-            btn.style.right = '.5rem';  
-            btn.style.position= 'absolute';
-            btn.textContent = 'Delete';
-            btn.className = 'button-1';
-            btn.style.fontSize = '1rem';
-            // multiple ids with the same content is
-            btn.setAttribute('id', 'delete-btn');
-            btn.setAttribute('data-key', `${bookObj}`);
-            btn.addEventListener('click', e => {
-                const btnDataKey = parseInt(btn.getAttribute('data-key'));
-                const bookDeleted = document.getElementById(btnDataKey);
-                console.log (bookDeleted.id);
-                books.splice(parseInt(bookDeleted.id), 1);
-                console.log (books);
-                content.removeChild(bookDeleted);
-            })
-            // const number = btn.getAttribute('data-key');
-            // console.log(number);
-            bookDiv.appendChild(btn);
-        }
-        bookDiv.setAttribute('id', `${bookObj}`);
-        bookDiv.style.position='relative';
-        content.appendChild(bookDiv);
+      const bookDiv = document.createElement("div");
+      bookDiv.className = "book";
+      const bookObj = books.length - 1;
+      for (const key in books[bookObj]) {
+        const bookGrid = document.createElement("div");
+        bookGrid.className = "book-grid";
+        const h3 = document.createElement("h1");
+        h3.textContent = `${key}:`;
+        const p = document.createElement("h2");
+        p.textContent = books[bookObj][key];
+        h3.className = "long";
+        p.className = "long";
+        bookGrid.append(h3, p);
+        bookDiv.appendChild(bookGrid);
+        const btn = document.createElement("button");
+        btn.style.top = "0.3rem";
+        btn.style.right = ".5rem";
+        btn.style.position = "absolute";
+        btn.textContent = "Delete";
+        btn.className = "button-1";
+        btn.style.fontSize = "1rem";
+        // multiple ids with the same content is
+        btn.setAttribute("id", "delete-btn");
+        btn.setAttribute("data-key", `${bookObj}`);
+        btn.addEventListener("click", (e) => {
+          const btnDataKey = parseInt(btn.getAttribute("data-key"));
+          const bookDeleted = document.getElementById(btnDataKey);
+          console.log(bookDeleted.id);
+          books.splice(parseInt(bookDeleted.id), 1);
+          console.log(books);
+          content.removeChild(bookDeleted);
+        });
+        // const number = btn.getAttribute('data-key');
+        // console.log(number);
+        bookDiv.appendChild(btn);
+      }
+      bookDiv.setAttribute("id", `${bookObj}`);
+      bookDiv.style.position = "relative";
+      content.appendChild(bookDiv);
     }
 
     // 1. set a data attribute for both
@@ -311,7 +368,7 @@
     // for (const key in object) {
     //     const value = object[key];
     //     console.log (value);
-        // console.log (`${key}: ${object[key]}`);
+    // console.log (`${key}: ${object[key]}`);
     // }
 
     // const obj = {
@@ -330,6 +387,5 @@
     // 'new book' takes inputs such as 'author', 'title', 'number of pages', 'read status'
     // 'remove' on the display of each book to remove the book.
     // 'read status' a toggle button to change the read status
-</script>
-
+  </script>
 </html>
